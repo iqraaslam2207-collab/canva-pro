@@ -55,7 +55,7 @@ export function Login({ onClose, onEnter }) {
         <div className="w-full max-w-[420px] rounded-[28px] bg-[#2c2d31] px-5 py-7 text-white shadow-[0_40px_80px_rgba(0,0,0,0.45)] sm:px-8 sm:py-10">
           {mode === 'pick' ? (
             <>
-              <h1 className="text-[32px] leading-[1.15] font-semibold tracking-[-0.03em]">
+              <h1 className="text-[28px] leading-[1.15] font-semibold tracking-[-0.03em] sm:text-[32px]">
                 Log in or sign up in seconds
               </h1>
               <p className="mt-3 text-[15px] leading-6 text-white/80">

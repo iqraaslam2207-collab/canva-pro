@@ -288,7 +288,7 @@ export function Landing({ onEnter }) {
           <h2 className="text-center text-[clamp(32px,3.9vw,56px)] leading-[1.1] font-normal tracking-[-0.56px] text-[#0f1015]">
             Tools to power your best work
           </h2>
-          <div className="mx-auto mt-7 flex w-fit max-w-full items-center gap-1 overflow-x-auto rounded-full bg-white p-1.5 shadow-[0_10px_40px_rgba(20,16,40,0.12)]">
+          <div className="no-scrollbar mx-auto mt-7 flex w-full max-w-full items-center gap-1 overflow-x-auto rounded-full bg-white p-1.5 shadow-[0_10px_40px_rgba(20,16,40,0.12)] sm:w-fit">
             {TABS.map((item) => (
               <button
                 key={item.id}
@@ -425,7 +425,7 @@ export function Landing({ onEnter }) {
           </article>
           <article className="flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#5b21b6] text-white">
             <div className="p-8">
-              <h3 className="max-w-[16ch] text-[32px] leading-[40px] font-semibold">Create magic with My Little Pony Designs</h3>
+              <h3 className="max-w-[16ch] text-[24px] leading-8 font-semibold sm:text-[32px] sm:leading-[40px]">Create magic with My Little Pony Designs</h3>
               <button className="mt-5 h-10 rounded-xl bg-white/90 px-4 text-sm font-semibold text-[#0f1015]" onClick={() => onEnter('start')}>
                 Explore the collection
               </button>

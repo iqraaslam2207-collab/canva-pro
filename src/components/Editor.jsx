@@ -678,7 +678,7 @@ export function Editor({ project, brand, onBack, onSave }) {
         </Modal>
       )}
       {toast && (
-        <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-[#16181d] px-4 py-2 text-sm text-white shadow-lg">
+        <div className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-[#16181d] px-4 py-2 text-sm text-white shadow-lg md:bottom-6">
           {toast}
         </div>
       )}
@@ -690,7 +690,7 @@ function FormatBar({ element, brand, onPatch, onAlign, onDuplicate, onDelete, on
   const color = element.type === 'text' ? element.color : element.fill
   return (
     <div className="pointer-events-none absolute top-3 left-1/2 z-20 w-[min(760px,calc(100%-24px))] -translate-x-1/2">
-      <div className="pointer-events-auto flex flex-wrap items-center gap-1 rounded-2xl border border-black/5 bg-white px-2 py-1.5 shadow-[0_10px_30px_rgba(15,18,28,0.12)]">
+        <div className="pointer-events-auto flex flex-nowrap items-center gap-1 overflow-x-auto rounded-2xl border border-black/5 bg-white px-2 py-1.5 shadow-[0_10px_30px_rgba(15,18,28,0.12)] md:flex-wrap md:overflow-visible">
         {element.type === 'text' && (
           <>
             <select
@@ -844,7 +844,9 @@ function ResizeDialog({ page, onClose, onApply }) {
 }
 
 function Presentation({ page, index, total, onClose, onPrev, onNext }) {
-  const scale = Math.min((window.innerWidth - 120) / page.width, (window.innerHeight - 140) / page.height)
+  const padX = window.innerWidth < 768 ? 24 : 120
+  const padY = window.innerWidth < 768 ? 120 : 140
+  const scale = Math.min((window.innerWidth - padX) / page.width, (window.innerHeight - padY) / page.height)
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#07080c] text-white">
       <div style={{ width: page.width * scale, height: page.height * scale }}>
