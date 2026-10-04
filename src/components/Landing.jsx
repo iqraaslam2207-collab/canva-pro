@@ -187,15 +187,15 @@ export function Landing({ onEnter }) {
     <div ref={scrollerRef} data-landing className="h-full overflow-y-auto bg-white text-[#0f1015]">
       <div ref={sentinelRef} className="h-px" aria-hidden="true" />
       <header
-        className={`fixed inset-x-0 top-0 z-40 h-20 transition ${lightHeader ? 'text-white' : 'bg-white text-[#0f1015] shadow-[0_1px_0_rgba(15,16,20,0.06)]'}`}
+        className={`fixed inset-x-0 top-0 z-40 h-14 transition sm:h-20 ${lightHeader ? 'text-white' : 'bg-white text-[#0f1015] shadow-[0_1px_0_rgba(15,16,20,0.06)]'}`}
         onMouseLeave={() => setOpenNav(null)}
       >
-        <div className="mx-auto flex h-20 max-w-[1440px] items-center gap-6 px-12">
+        <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-3 px-4 sm:h-20 sm:gap-6 sm:px-8 lg:px-12">
           <button aria-label="Open menu" className="min-[980px]:hidden" onClick={() => setMenu(true)}>
             <Icon name="menu" />
           </button>
           <button aria-label="Canva home" onClick={() => onEnter('start')}>
-            <Wordmark light={lightHeader} />
+            <Wordmark light={lightHeader} className="h-6 w-16 sm:h-[30px] sm:w-[80px]" />
           </button>
           <nav className="hidden min-[980px]:flex flex-1 items-center justify-center gap-0.5">
             {NAV.map((item) => (
@@ -262,19 +262,19 @@ export function Landing({ onEnter }) {
         </div>
       )}
 
-      <section className="relative min-h-[876px] overflow-hidden bg-[linear-gradient(180deg,#992bff_0%,#5a32fa_30.09%,#13a3b5_56.76%,#93e8f6_76.85%,#f1ebff_95.28%,#ffffff_100%)] text-white">
-        <div className="mx-auto flex max-w-[1100px] flex-col items-center px-6 pt-[175px] text-center">
+      <section className="relative min-h-[620px] overflow-hidden bg-[linear-gradient(180deg,#992bff_0%,#5a32fa_30.09%,#13a3b5_56.76%,#93e8f6_76.85%,#f1ebff_95.28%,#ffffff_100%)] text-white sm:min-h-[876px]">
+        <div className="mx-auto flex max-w-[1100px] flex-col items-center px-5 pt-24 text-center sm:px-6 sm:pt-[175px]">
           <h1
-            className="max-w-[14ch] text-[clamp(40px,5.55vw,80px)] font-normal tracking-[-0.8px] text-white/90"
+            className="max-w-[14ch] text-[clamp(36px,8vw,80px)] font-normal tracking-[-0.8px] text-white/90"
             style={{ lineHeight: 1.1 }}
           >
             What will you design today?
           </h1>
-          <p className="mt-4 max-w-[28ch] text-[24px] leading-[33.6px] font-normal text-white/90 sm:max-w-none">
+          <p className="mt-3 max-w-[22ch] text-[17px] leading-6 font-normal text-white/90 sm:mt-4 sm:max-w-none sm:text-[24px] sm:leading-[33.6px]">
             Make AI-powered social posts, videos, presentations, and more with Canva.
           </p>
           <button
-            className="mt-7 inline-flex h-14 w-48 items-center justify-center rounded-[20px] bg-[rgba(255,255,255,0.898)] text-base font-semibold text-[#0f1015] shadow-sm hover:bg-white"
+            className="mt-6 inline-flex h-12 w-44 items-center justify-center rounded-[20px] bg-[rgba(255,255,255,0.898)] text-[15px] font-semibold text-[#0f1015] shadow-sm hover:bg-white sm:mt-7 sm:h-14 sm:w-48 sm:text-base"
             onClick={() => onEnter('start')}
           >
             Start designing
@@ -292,7 +292,7 @@ export function Landing({ onEnter }) {
             {TABS.map((item) => (
               <button
                 key={item.id}
-                className={`flex shrink-0 items-center gap-2 rounded-full px-6 py-3 text-[16px] font-semibold ${
+                className={`flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold sm:px-6 sm:py-3 sm:text-[16px] ${
                   tab === item.id ? `${item.tint} text-white` : 'text-[#3f3f46] hover:bg-[#f4f5f7]'
                 }`}
                 onClick={() => setTab(item.id)}
@@ -307,11 +307,11 @@ export function Landing({ onEnter }) {
             {TAB_CARDS[tab].map((card) => (
               <button
                 key={card.title}
-                className={`flex min-h-[520px] flex-col overflow-hidden rounded-[24px] text-left text-white ${card.className}`}
+                className={`flex min-h-[400px] flex-col overflow-hidden rounded-[24px] text-left text-white lg:min-h-[520px] ${card.className}`}
                 onClick={() => onEnter('start', card.type)}
               >
-                <div className="px-8 pt-8 pb-4">
-                  <h3 className="max-w-[18ch] text-[28px] leading-[35px] font-medium tracking-[-0.28px] sm:text-[32px] sm:leading-[40px] sm:font-semibold">
+                <div className="px-5 pt-6 pb-3 sm:px-8 sm:pt-8 sm:pb-4">
+                  <h3 className="max-w-[18ch] text-[24px] leading-[30px] font-medium tracking-[-0.28px] sm:text-[32px] sm:leading-[40px] sm:font-semibold">
                     {card.title}
                   </h3>
                   <span className="mt-5 inline-flex h-10 w-fit max-w-full items-center truncate rounded-xl bg-white/90 px-4 text-sm font-semibold text-[#0f1015]">
@@ -330,9 +330,9 @@ export function Landing({ onEnter }) {
           All the tools. All in one place.
         </h2>
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <article className="flex min-h-[720px] flex-col overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,#7c3aed_0%,#2563eb_55%,#67e8f9_100%)] text-white">
-            <div className="p-10">
-              <h3 className="max-w-[12ch] text-[32px] leading-[40px] font-semibold tracking-[-0.32px]">Meet the Visual Suite</h3>
+          <article className="flex min-h-[480px] flex-col overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,#7c3aed_0%,#2563eb_55%,#67e8f9_100%)] text-white lg:min-h-[720px]">
+            <div className="p-6 sm:p-10">
+              <h3 className="max-w-[12ch] text-[24px] leading-8 font-semibold tracking-[-0.32px] sm:text-[32px] sm:leading-[40px]">Meet the Visual Suite</h3>
               <p className="mt-4 max-w-md text-lg leading-7 text-white/95">
                 Your entire workflow in one place for seamless creation and collaboration, powered by AI.
               </p>
@@ -342,9 +342,9 @@ export function Landing({ onEnter }) {
             </div>
             <img src={asset('canva/visual-suite.png')} alt="" className="mt-auto w-full" />
           </article>
-          <article className="flex min-h-[720px] flex-col overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,#fdba74_0%,#fb923c_40%,#fff7ed_100%)] text-[#0f1015]">
-            <div className="p-10">
-              <h3 className="max-w-[12ch] text-[32px] leading-[40px] font-semibold tracking-[-0.32px]">Present with impact</h3>
+          <article className="flex min-h-[480px] flex-col overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,#fdba74_0%,#fb923c_40%,#fff7ed_100%)] text-[#0f1015] lg:min-h-[720px]">
+            <div className="p-6 sm:p-10">
+              <h3 className="max-w-[12ch] text-[24px] leading-8 font-semibold tracking-[-0.32px] sm:text-[32px] sm:leading-[40px]">Present with impact</h3>
               <p className="mt-4 max-w-md text-lg leading-7">
                 Reimagine presentations with cinematic visuals, smart collaboration, and AI-powered tools.
               </p>
@@ -383,11 +383,11 @@ export function Landing({ onEnter }) {
             >
               ‹
             </button>
-            <div data-templates className="no-scrollbar flex gap-4 overflow-x-auto px-1 pb-2">
+            <div data-templates className="no-scrollbar flex items-start snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-2 sm:gap-4">
               {TEMPLATES.map((template) => (
                 <button
                   key={template.id}
-                  className="w-[220px] shrink-0 overflow-hidden rounded-[18px] bg-[#f2f3f5] text-left"
+                  className="flex w-[168px] shrink-0 snap-start flex-col overflow-hidden rounded-[18px] bg-white text-left shadow-sm ring-1 ring-black/5 sm:w-[220px]"
                   onClick={() => onEnter('template', template.id)}
                 >
                   <DesignThumb page={template.pages[0]} />
@@ -416,7 +416,7 @@ export function Landing({ onEnter }) {
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           <article className="flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,#7c3aed_0%,#1d4ed8_40%,#99f6e4_100%)] text-white lg:col-span-2">
             <div className="p-8">
-              <h3 className="max-w-[16ch] text-[32px] leading-[40px] font-semibold">Get inspired, build skills and discover what you can create</h3>
+                  <h3 className="max-w-[16ch] text-[24px] leading-8 font-semibold sm:text-[32px] sm:leading-[40px]">Get inspired, build skills and discover what you can create</h3>
               <button className="mt-5 h-10 rounded-xl bg-white/90 px-4 text-sm font-semibold text-[#0f1015]" onClick={() => onEnter('start')}>
                 Explore Canva World Tour
               </button>
@@ -497,16 +497,17 @@ const FOOTER = [
 function StickerField() {
   const top = ['floating-font.png', 'floating-ai.png', 'floating-heart.png', 'floating-video.png']
   const bottom = ['floating-wheel.png', 'floating-sticky.png', 'floating-c.png', 'floating-ball.png', 'floating-code.png']
+  const tile = 'h-14 w-14 object-contain sm:h-[120px] sm:w-[120px] lg:h-[170px] lg:w-[170px]'
   return (
-    <div className="relative mx-auto mt-14 flex max-w-[1180px] flex-col items-center gap-8 px-4 pb-28">
-      <div className="flex items-center justify-center gap-8">
+    <div className="relative mx-auto mt-8 flex max-w-[1180px] flex-col items-center gap-3 overflow-hidden px-3 pb-16 sm:mt-14 sm:gap-8 sm:px-4 sm:pb-28">
+      <div className="flex items-center justify-center gap-2 sm:gap-8">
         {top.map((src) => (
-          <img key={src} src={asset(`canva/${src}`)} alt="" className="h-[170px] w-[170px] object-contain" />
+          <img key={src} src={asset(`canva/${src}`)} alt="" className={tile} />
         ))}
       </div>
-      <div className="flex items-center justify-center gap-8">
+      <div className="flex items-center justify-center gap-2 sm:gap-8">
         {bottom.map((src) => (
-          <img key={src} src={asset(`canva/${src}`)} alt="" className="h-[170px] w-[170px] object-contain" />
+          <img key={src} src={asset(`canva/${src}`)} alt="" className={tile} />
         ))}
       </div>
     </div>

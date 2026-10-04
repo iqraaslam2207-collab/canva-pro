@@ -42,23 +42,23 @@ export function Home({ user, projects, brand, onBrand, onOpen, onCreate, onTempl
   ].filter(Boolean)
 
   return (
-    <div className="flex h-full bg-white text-[#0f1015]">
-      <nav className="flex w-[72px] shrink-0 flex-col items-center border-r border-[#eceef2] bg-white py-3">
-        <button aria-label="Canva home" className="mb-3" onClick={() => setTab('home')}>
+    <div className="flex h-full flex-col bg-white text-[#0f1015] md:flex-row">
+      <nav className="order-2 flex h-16 w-full shrink-0 items-center justify-around border-t border-[#eceef2] bg-white px-1 pb-[env(safe-area-inset-bottom)] md:order-1 md:h-auto md:w-[72px] md:flex-col md:justify-start md:border-t-0 md:border-r md:px-0 md:py-3 md:pb-3">
+        <button aria-label="Canva home" className="mb-3 hidden md:block" onClick={() => setTab('home')}>
           <Wordmark className="h-[18px] w-[48px]" />
         </button>
         <button
-          className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#8b3dff] text-white shadow-md hover:bg-[#7a30ee]"
+          className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#8b3dff] text-white shadow-md hover:bg-[#7a30ee] md:mb-3 md:h-12 md:w-12"
           aria-label="Create a design"
           onClick={() => onCreate(DESIGN_TYPES.find((type) => type.id === 'presentation'))}
         >
           <Icon name="plus" className="h-6 w-6" />
         </button>
-        <div className="flex flex-1 flex-col gap-0.5">
+        <div className="flex flex-1 items-center justify-around md:flex-col md:gap-0.5">
           {NAV.map(([id, label, icon]) => (
             <button
               key={id}
-              className={`flex w-[64px] flex-col items-center gap-1 rounded-xl px-1 py-2 text-[10px] font-semibold ${
+              className={`flex w-14 flex-col items-center gap-0.5 rounded-xl px-1 py-1.5 text-[9px] font-semibold md:w-[64px] md:py-2 md:text-[10px] ${
                 tab === id ? 'bg-[#f3e8ff] text-[#8b3dff]' : 'text-[#5c6370] hover:bg-[#f4f5f7]'
               }`}
               onClick={() => setTab(id)}
@@ -68,16 +68,16 @@ export function Home({ user, projects, brand, onBrand, onOpen, onCreate, onTempl
             </button>
           ))}
         </div>
-        <button className="flex flex-col items-center gap-1" onClick={onLogout} title="Log out">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#8b3dff] text-sm font-semibold text-white">
+        <button className="flex flex-col items-center gap-0.5 md:mt-auto" onClick={onLogout} title="Log out">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8b3dff] text-sm font-semibold text-white md:h-9 md:w-9">
             {(user || 'Y').slice(0, 1).toUpperCase()}
           </span>
-          <span className="text-[10px] text-[#6b7280]">Log out</span>
+          <span className="hidden text-[10px] text-[#6b7280] md:block">Log out</span>
         </button>
       </nav>
 
-      <main className="min-w-0 flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8">
+      <main className="order-1 min-w-0 flex-1 overflow-y-auto">
+        <div className="mx-auto max-w-6xl px-4 py-5 sm:px-8 sm:py-8">
           {(tab === 'home' || tab === 'templates') && (
             <label className="mx-auto flex max-w-3xl items-center gap-3 rounded-full border border-[#e6e8ee] bg-[#f2f3f5] px-5 py-3.5">
               <Icon name="search" className="text-[#8b3dff]" />
@@ -258,11 +258,11 @@ function TemplateGrid({ templates, category, onCategory, onTemplate }) {
           </button>
         ))}
       </div>
-      <div className="mt-4 columns-2 gap-4 md:columns-3 xl:columns-4">
+      <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 xl:grid-cols-4">
         {templates.map((template) => (
           <button
             key={template.id}
-            className="mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 ring-black/5"
+            className="mb-0 overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 ring-black/5"
             onClick={() => onTemplate(template)}
           >
             <DesignThumb page={template.pages[0]} />
@@ -291,7 +291,7 @@ function ProjectCard({ project, onOpen, onDelete }) {
         </div>
         <button
           aria-label={`Delete ${project.name}`}
-          className="rounded-lg p-1 text-[#98a0ae] opacity-0 hover:bg-[#f4f5f7] hover:text-[#d11a3a] group-hover:opacity-100"
+          className="rounded-lg p-1 text-[#98a0ae] hover:bg-[#f4f5f7] hover:text-[#d11a3a] md:opacity-0 md:group-hover:opacity-100"
           onClick={() => onDelete(project.id)}
         >
           <Icon name="trash" className="h-4 w-4" />

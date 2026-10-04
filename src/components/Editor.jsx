@@ -33,7 +33,9 @@ export function Editor({ project, brand, onBack, onSave }) {
   const [pageIndex, setPageIndex] = useState(0)
   const [selectedId, setSelectedId] = useState(null)
   const [editingId, setEditingId] = useState(null)
-  const [panel, setPanel] = useState('templates')
+  const [panel, setPanel] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches ? 'templates' : null,
+  )
   const [zoom, setZoom] = useState(1)
   const [viewScale, setViewScale] = useState(0.4)
   const [grid, setGrid] = useState(false)
@@ -290,6 +292,9 @@ export function Editor({ project, brand, onBack, onSave }) {
       }
     })
     setSelectedId(null)
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches) {
+      setPanel(null)
+    }
     show('Template applied. Undo if you want it back.')
   }
 
@@ -447,14 +452,14 @@ export function Editor({ project, brand, onBack, onSave }) {
 
   return (
     <div className="flex h-full min-h-0 flex-col bg-[#f3f4f6] text-[#16181d]">
-      <header className="flex h-14 shrink-0 items-center gap-2 border-b border-[#e6e8ee] bg-white px-3">
+      <header className="flex h-12 shrink-0 items-center gap-1 overflow-x-auto border-b border-[#e6e8ee] bg-white px-2 sm:h-14 sm:gap-2 sm:px-3">
         <button className="rounded-lg px-1" onClick={onBack} aria-label="Back to home">
-          <Wordmark className="h-[24px] w-[64px]" />
+          <Wordmark className="h-5 w-14 sm:h-[24px] sm:w-[64px]" />
         </button>
         <input
           value={doc.name}
           onChange={(event) => update((current) => ({ ...current, name: event.target.value }), { record: false })}
-          className="w-44 rounded-lg px-2 py-1 text-sm font-medium outline-none hover:bg-[#f4f5f7] focus:bg-[#f4f5f7] sm:w-64"
+          className="w-28 rounded-lg px-2 py-1 text-sm font-medium outline-none hover:bg-[#f4f5f7] focus:bg-[#f4f5f7] sm:w-44 md:w-64"
           aria-label="Design name"
         />
         <span className="hidden rounded-full bg-[#f4ebff] px-2 py-0.5 text-[11px] font-semibold text-[#7D2AE8] sm:inline">
@@ -497,12 +502,12 @@ export function Editor({ project, brand, onBack, onSave }) {
         </button>
       </header>
 
-      <div className="relative flex min-h-0 flex-1">
-        <nav className="flex w-[76px] shrink-0 flex-col items-center gap-1 border-r border-[#eceef2] bg-white py-3">
+      <div className="relative flex min-h-0 flex-1 flex-col md:flex-row">
+        <nav className="order-2 flex h-16 w-full shrink-0 flex-row items-stretch overflow-x-auto border-t border-[#eceef2] bg-white px-1 pb-[env(safe-area-inset-bottom)] md:order-1 md:h-auto md:w-[76px] md:flex-col md:items-center md:gap-1 md:overflow-visible md:border-t-0 md:border-r md:px-0 md:py-3 md:pb-3">
           {RAIL.map(([id, label, icon]) => (
             <button
               key={id}
-              className={`flex w-[68px] flex-col items-center gap-1 rounded-xl px-1 py-2 text-[10px] font-medium ${
+              className={`flex min-w-[58px] flex-1 flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-1 text-[9px] font-medium md:min-w-0 md:w-[68px] md:flex-none md:py-2 md:text-[10px] ${
                 panel === id ? 'bg-[#f4ebff] text-[#7D2AE8]' : 'text-[#3d4250] hover:bg-[#f4f5f7]'
               }`}
               onClick={() => setPanel((current) => (current === id ? null : id))}
@@ -514,7 +519,7 @@ export function Editor({ project, brand, onBack, onSave }) {
         </nav>
 
         {panel && (
-          <div className="absolute inset-y-0 left-[76px] z-30 h-full shadow-xl md:static md:shadow-none">
+          <div className="absolute inset-0 z-40 md:static md:inset-auto md:order-2 md:z-auto md:shadow-none">
           <SidePanel
             panel={panel}
             page={page}
@@ -536,7 +541,7 @@ export function Editor({ project, brand, onBack, onSave }) {
           </div>
         )}
 
-        <div className="relative flex min-w-0 flex-1 flex-col">
+        <div className="relative order-1 flex min-h-0 min-w-0 flex-1 flex-col md:order-3">
           {selected && (
             <FormatBar
               element={selected}
@@ -574,7 +579,7 @@ export function Editor({ project, brand, onBack, onSave }) {
             onEmptyDoubleClick={addTextAt}
             onAction={onAction}
           />
-          <footer className="flex h-[76px] shrink-0 items-center gap-3 border-t border-[#e6e8ee] bg-white px-3">
+          <footer className="flex h-16 shrink-0 items-center gap-2 overflow-x-auto border-t border-[#e6e8ee] bg-white px-2 sm:h-[76px] sm:gap-3 sm:px-3">
             <div className="flex min-w-0 flex-1 items-center gap-2 overflow-x-auto">
               {doc.pages.map((item, index) => (
                 <button
@@ -603,7 +608,7 @@ export function Editor({ project, brand, onBack, onSave }) {
                 Duplicate page
               </button>
             </div>
-            <div className="flex items-center gap-1 text-sm">
+            <div className="hidden items-center gap-1 text-sm sm:flex">
               <button
                 className={`rounded-lg px-2 py-1 text-xs ${grid ? 'bg-[#f4ebff] text-[#7D2AE8]' : 'hover:bg-[#f4f5f7]'}`}
                 onClick={() => setGrid((value) => !value)}

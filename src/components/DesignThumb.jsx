@@ -21,10 +21,17 @@ export function DesignThumb({ page, className = '' }) {
   return (
     <div
       ref={frameRef}
-      className={`relative w-full overflow-hidden bg-white ${className}`}
+      className={`relative w-full overflow-hidden bg-white pointer-events-none ${className}`}
       style={{ aspectRatio: `${page.width} / ${page.height}` }}
     >
-      <div className="absolute top-0 left-0" style={{ transform: `scale(${scale})`, transformOrigin: 'top left' }}>
+      <div
+        className="absolute top-0 left-0 origin-top-left"
+        style={{
+          width: page.width,
+          height: page.height,
+          transform: `scale(${scale})`,
+        }}
+      >
         <PageSurface page={page} />
       </div>
     </div>

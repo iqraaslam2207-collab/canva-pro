@@ -34,28 +34,25 @@ export function Login({ onClose, onEnter }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-[#0b0c10]">
-      <div className="absolute inset-0 columns-2 gap-2 p-2 opacity-80 sm:columns-3 md:columns-4 lg:columns-5">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#0b0c10]">
+      <div className="pointer-events-none absolute inset-0 columns-2 gap-2 p-2 opacity-80 sm:columns-3 md:columns-4 lg:columns-5">
         {TILES.map((tile) => (
           <MosaicTile key={tile.title} tile={tile} />
         ))}
       </div>
-      <div className="absolute inset-0 bg-[rgba(8,10,16,0.55)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[rgba(8,10,16,0.55)]" />
 
-      <header className="relative z-10 flex h-16 items-center justify-between px-6 text-white">
+      <header className="relative z-10 flex h-14 items-center justify-between px-4 text-white sm:h-16 sm:px-6">
         <button aria-label="Canva home" onClick={onClose}>
-          <Wordmark light />
+          <Wordmark light className="h-6 w-16 sm:h-[30px] sm:w-[80px]" />
         </button>
-        <nav className="hidden gap-5 text-sm min-[900px]:flex">
-          {['Design', 'Product', 'Plans', 'Business', 'Education', 'Help'].map((item) => (
-            <span key={item}>{item}</span>
-          ))}
-        </nav>
-        <span className="w-24" />
+        <button aria-label="Close" className="rounded-lg p-2 hover:bg-white/10" onClick={onClose}>
+          <Icon name="close" />
+        </button>
       </header>
 
-      <div className="relative z-10 flex min-h-[calc(100%-4rem)] items-center justify-center p-4">
-        <div className="w-full max-w-[420px] rounded-[28px] bg-[#2c2d31] px-8 py-10 text-white shadow-[0_40px_80px_rgba(0,0,0,0.45)]">
+      <div className="relative z-10 flex min-h-[calc(100%-3.5rem)] items-start justify-center p-4 pb-10 sm:items-center sm:min-h-[calc(100%-4rem)]">
+        <div className="w-full max-w-[420px] rounded-[28px] bg-[#2c2d31] px-5 py-7 text-white shadow-[0_40px_80px_rgba(0,0,0,0.45)] sm:px-8 sm:py-10">
           {mode === 'pick' ? (
             <>
               <h1 className="text-[32px] leading-[1.15] font-semibold tracking-[-0.03em]">

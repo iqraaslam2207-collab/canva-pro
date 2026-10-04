@@ -13,6 +13,8 @@ html,
 body,
 #root {
   height: 100%;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 body {
@@ -31,6 +33,7 @@ select {
 
 button {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 ::selection {

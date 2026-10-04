@@ -52,7 +52,7 @@ export function SidePanel({
   )
 
   return (
-    <aside className="flex h-full w-[320px] shrink-0 flex-col border-r border-[#eceef2] bg-white">
+    <aside className="flex h-full w-full shrink-0 flex-col border-r border-[#eceef2] bg-white md:w-[320px]">
       <div className="flex items-center justify-between px-4 pt-4 pb-2">
         <h2 className="text-[15px] font-semibold">{titles[panel]}</h2>
         <button aria-label="Close panel" className="rounded-lg p-1 text-[#5c6370] hover:bg-[#f3f4f7]" onClick={onClose}>
